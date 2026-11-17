@@ -1,0 +1,11 @@
+{
+  "name": "watchtower-crypto",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "check": "node --check src/app.js && node --check src/state.js && node --check src/core.js",
+    "test": "node --test tests/unit.test.mjs",
+    "quality": "npm run check && npm test"
+  }
+}
