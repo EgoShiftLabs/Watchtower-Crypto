@@ -2,7 +2,7 @@
 export const SIGNAL_SCHEMA="bodybagz.opportunity.v1";
 export const DOMAINS=["Culture","Music & IP","AI & tools","Web3 & utilities","Community","Other"];
 export const trim=(x,max=1500)=>String(x??"").trim().slice(0,max);
-export const httpsUrl=x=>{try{const u=new URL(String(x));return u.protocol==="https:"&&Boolean(u.hostname);}catch{return false;}};
+export const httpsUrl=x=>{try{const u=new URL(String(x));return u.protocol==="https:"&&Boolean(u.hostname)&&!u.username&&!u.password;}catch{return false;}};
 export const esc=x=>String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 export const id=(p="local")=>p+"-"+(typeof crypto!=="undefined"&&typeof crypto.randomUUID==="function"?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2));
 export const now=()=>new Date().toISOString();
@@ -29,7 +29,11 @@ export function creatorReference(input){
  return {value:k};
 }
 export function validCreator(k){return Boolean(k&&typeof k.id==="string"&&k.id.length<=100&&typeof k.handle==="string"&&k.handle.length>=2&&k.handle.length<=90&&typeof k.url==="string"&&k.url.length<=600&&httpsUrl(k.url)&&typeof k.note==="string"&&k.note.length<=500);}
-export function createExport(s){if(!validSignal(s))throw Error("Not a valid source-linked opportunity");return {...s};}
+const opportunityFields=["schema","id","title","domain","observation","risk","sourceUrl","at","evidenceStatus"];
+export function createExport(s){
+ if(!validSignal(s))throw Error("Not a valid source-linked opportunity");
+ return Object.fromEntries(opportunityFields.map(key=>[key,s[key]]));
+}
 export function tabSummary(signals){
  const domains=Object.fromEntries(DOMAINS.map(k=>[k,0]));
  for(const s of signals)if(validSignal(s))domains[s.domain]++;
