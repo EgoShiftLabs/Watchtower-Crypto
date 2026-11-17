@@ -27,7 +27,7 @@ const researchPrompts=[
 ];
 function home(){
  const counts=tabSummary(state.signals);
- return '<section class="hero"><p class="eyebrow">WATCHTOWER / CULTURAL SIGNAL INTELLIGENCE</p><h1>Study the signal.<br><em>Challenge the noise.</em></h1><p>Don't mistake attention for adoption. Collect evidence, challenge the narrative, and decide what deserves to be built.</p><div class="hero-actions"><a class="button primary" href="#/signals">Research an opportunity ↗</a><a class="button ghost" href="#/creators">Track public creators ↗</a></div><span class="hero-art" aria-hidden="true">W.</span></section>'+
+ return '<section class="hero"><p class="eyebrow">WATCHTOWER / CULTURAL SIGNAL INTELLIGENCE</p><h1>Study the signal.<br><em>Challenge the noise.</em></h1><p>Do not mistake attention for adoption. Collect evidence, challenge the narrative, and decide what deserves to be built.</p><div class="hero-actions"><a class="button primary" href="#/signals">Research an opportunity ↗</a><a class="button ghost" href="#/creators">Track public creators ↗</a></div><span class="hero-art" aria-hidden="true">W.</span></section>'+
  '<div class="warning"><strong>Manual research preview:</strong> No live Pump.fun/DEX prices, trending feed, wallet analysis, KOL scraping, or verified endorsements. Everything below is your own local research or an explicitly marked question to investigate.</div>'+
  '<div class="metric-grid">'+counter("SOURCE-LINKED SIGNALS",state.signals.length,"User-entered, not independently verified")+
  counter("PUBLIC CREATOR NOTES",state.creators.length,"Manual links, not social monitoring")+
